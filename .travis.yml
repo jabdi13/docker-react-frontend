@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t jabdi/docker-react-frontend -f Dockerfile.dev .
+  
+script:
+  - docker run -e CI=true jabdi/docker-react-frontend npm run test
