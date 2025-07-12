@@ -15,7 +15,7 @@ deploy:
   env: Frontend-env
   bucket_name: elasticbeanstalk-us-west-1-124355643802
   bucket_path: frontend
-  version: $TRAVIS_COMMIT
+  version: "deploy-$TRAVIS_COMMIT"
   on: 
     branch: main
   access_key_id: $AWS_ACCESS_KEY
