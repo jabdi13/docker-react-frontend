@@ -8,6 +8,10 @@ before_install:
 script:
   - docker run -e CI=true jabdi/docker-react-frontend npm run test
 
+before_deploy:
+  - rm -rf node_modules  # Limpia dependencias innecesarias
+  - zip -r deploy-$TRAVIS_COMMIT.zip . -x "*.git*" "node_modules/*" ".dockerignore"
+
 deploy: 
   provider: elasticbeanstalk
   region: us-west-1
