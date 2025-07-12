@@ -11,6 +11,7 @@ script:
 before_deploy:
   - rm -rf node_modules  # Limpia dependencias innecesarias
   - zip -r deploy-$TRAVIS_COMMIT.zip . -x "*.git*" "node_modules/*" ".dockerignore"
+  - aws s3 cp deploy-$TRAVIS_COMMIT.zip s3://elasticbeanstalk-us-west-1-124355643802/frontend/
 
 deploy: 
   provider: elasticbeanstalk
