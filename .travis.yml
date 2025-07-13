@@ -22,5 +22,3 @@ deploy:
     branch: main
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
-  version: "frontend-$(date +%s)-${TRAVIS_COMMIT:0:8}"
-  skip_cleanup: true
