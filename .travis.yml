@@ -4,6 +4,9 @@ services:
 
 before_install:
   - docker build -t jabdi/docker-react-frontend -f Dockerfile.dev .
+
+before_deploy:
+  - zip -r app.zip * -x ".git/*" "node_modules/*" ".travis.yml" "*.md"
   
 script:
   - docker run -e CI=true jabdi/docker-react-frontend npm run test
