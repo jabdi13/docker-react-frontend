@@ -8,11 +8,6 @@ before_install:
 script:
   - docker run -e CI=true jabdi/docker-react-frontend npm run test
 
-before_deploy:
-  - rm -rf node_modules  # Limpia dependencias innecesarias
-  - zip -r deploy-$TRAVIS_COMMIT.zip . -x "*.git*" "node_modules/*" ".dockerignore"
-  - aws s3 cp deploy-$TRAVIS_COMMIT.zip s3://elasticbeanstalk-us-west-1-124355643802/frontend/
-
 deploy: 
   provider: elasticbeanstalk
   region: us-west-1
@@ -20,7 +15,6 @@ deploy:
   env: Frontend-env
   bucket_name: elasticbeanstalk-us-west-1-124355643802
   bucket_path: frontend
-  version: "deploy-$TRAVIS_COMMIT"
   on: 
     branch: main
   access_key_id: $AWS_ACCESS_KEY
