@@ -5,20 +5,17 @@ services:
 before_install:
   - docker build -t jabdi/docker-react-frontend -f Dockerfile.dev .
 
-before_deploy:
-  - zip -r app.zip * -x ".git/*" "node_modules/*" ".travis.yml" "*.md"
-  
 script:
   - docker run -e CI=true jabdi/docker-react-frontend npm run test
 
 deploy: 
   provider: elasticbeanstalk
-  region: us-west-1
+  region: us-east-1
   app: frontend
   env: Frontend-env
-  bucket_name: elasticbeanstalk-us-west-1-124355643802
+  bucket: elasticbeanstalk-us-east-1-124355643802
   bucket_path: frontend
   on: 
     branch: main
   access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY 
+  secret_access_key: $AWS_SECRET_KEY
