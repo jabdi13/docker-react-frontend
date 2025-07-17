@@ -21,5 +21,4 @@ jobs:
       - run: |
           zip deploy.zip Dockerfile
           pip install awsebcli
-          eb init frontend --region us-east-1
           eb deploy Frontend-env --staged
