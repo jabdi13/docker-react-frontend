@@ -14,7 +14,7 @@ jobs:
       - name: Run tests in Docker container
         run: docker run -e CI=true my-app-dev npm run test
       - name: Deploy to Elastic Beanstalk
-        uses: aws-actions/configure-aws-credentials@v4
+      - uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
